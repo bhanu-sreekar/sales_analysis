@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CODES</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1 id="hh"> SQL CODES
+        </h1>
+
+        <p id="pp5">create database sales_analysis;
+use sales_analysis;
+
+create table customer(
+customer_id int primary key,
+customer_name varchar(40),
+cities varchar(40),
+gender varchar(10),
+age int,
+contact varchar(15)
+);
+insert into  customer(customer_id,
+customer_name,cities,gender,age,contact)
+values
+(1,'siva','podalakur','male',43,9441961297),
+(2,'venkat','nellore','male',45,8128358907),
+(3,'ganesh','guntur','male',36,9912137460),
+(4,'karthikeya','gudur','male',39,9812157665),
+(5,'sai','kavali','male',19,9790199456),
+(6,'sinesh','ongole','male',26,9634513963),
+(7,'bhanu','nellore','male',20,6302581879),
+(8,'sreekar','hyderabad','male',19,6304757876),
+(9,'venkat','buchi','male',36,9912137460),
+(10,'raja','marupur','male',76,9614157987),
+(11,'rajini','chennai','female',56,9827157977),
+(12,'deepthi','podalakur','female',39,9014769148),
+(13,'akhil','sulurpeta','male',24,9496874617),
+(14,'surekha','athmakur','female',63,8305678987),
+(15,'durga','vijayawada','female',28,7895831487);
+
+select * from customer; <br>
+<br>
+
+
+create table product(
+product_id int primary key,
+product_name varchar(40),
+category varchar(40),
+price decimal(10,2),
+brand varchar(40)
+);
+insert into product(product_id,product_name,
+category,price,brand)
+values
+(1,'laptop','electronic',50000,'lenovo'),
+(2,'mobile phone','electronic',30000,'vivo'),
+(3,'desktop','electronic',60000,'dell'),
+(4,'mousepad','accessories',500,'acer'),
+(5,'keyboard','electronic',2000,'zebronics'),
+(6,'laptop','electronic',80000,'apple'),
+(7,'mobile case','accessories',350,'uag'),
+(8,'laptop sleeve','accessories',1200,'softsleeve'),
+(9,'mouse','electronic',600,'arcticfox'),
+(10,'mobile phone','electronic',50350,'oneplus');
+
+
+select *from product; <br>
+
+
+
+
+create table orderd(
+order_id int primary key,
+customer_id int,
+order_date date,
+payment_method varchar(15),
+order_status varchar(40),
+foreign key(customer_id) references customer(customer_id)
+);
+insert into orderd
+values
+(101,1,'2024-08-24','upi','delivered'),
+(102,2,'2024-09-26','upi','delivered'),
+(103,3,'2024-08-27','cash','delivered'),
+(104,4,'2024-06-20','upi','delivered'),
+(105,5,'2024-08-24','upi','failed'),
+(106,6,'2024-11-14','card','delivered'),
+(107,7,'2024-10-04','card','delivered'),
+(108,8,'2024-12-05','card','delivered'),
+(109,9,'2024-03-30','upi','delivered'),
+(110,10,'2024-11-12','cash','failed'),
+(111,11,'2024-04-19','cash','failed'),
+(112,12,'2024-09-29','upi','delivered'),
+(113,13,'2024-10-02','cash','delivered'),
+(114,14,'2024-10-04','card','delivered'),
+(115,15,'2024-10-06','upi','delivered'),
+(116,1,'2024-09-28','card','delivered'),
+(117,2,'2024-10-03','card','failed'),
+(118,3,'2024-09-27','cash','delivered'),
+(119,4,'2024-10-01','upi','delivered'),
+(120,5,'2024-08-14','card','delivered'),
+(121,6,'2024-10-06','upi','delivered'),
+(122,7,'2024-09-19','cash','delivered'),
+(123,8,'2024-11-05','upi','failed'),
+(124,9,'2024-12-25','upi','delivered'),
+(125,10,'2024-12-22','cash','delivered'),
+(126,11,'2024-08-24','upi','delivered'),
+(127,12,'2024-12-21','card','delivered'),
+(128,13,'2024-10-07','upi','delivered'),
+(129,14,'2024-08-24','cash','delivered'),
+(130,15,'2024-10-13','card','delivered');
+select * from orderd;
+<br>
+
+
+
+
+create table order_items(order_items_id int primary key,
+order_id int,
+product_id int,
+quantity int,
+foreign key(order_id) references orderd(order_id),
+foreign key(product_id) references product(product_id)
+);
+insert into order_items
+values
+(1,101,1,1),
+(2,101,9,2),
+(3,102,2,1),
+(4,103,3,1),
+(5,104,4,2),
+(6,105,5,1),
+(7,106,6,1),
+(8,107,7,2),
+(9,108,8,1),
+(10,109,9,1),
+(11,110,10,1),
+(12,111,1,1),
+(13,112,2,2),
+(14,113,3,1),
+(15,114,4,1),
+(16,115,5,2),
+(17,116,6,1),
+(18,117,7,1),
+(19,118,8,2),
+(20,119,9,1),
+(21,120,10,1),
+(22,121,1,1),
+(23,121,2,1),
+(24,122,3,1),
+(25,123,4,2),
+(26,124,5,1),
+(27,125,6,1),
+(28,126,7,2),
+(29,127,8,1),
+(30,128,9,1),
+(31,129,10,2),
+(32,130,1,1);
+
+
+<br>
+UPDATE orderd SET payment_method = UPPER(payment_method);
+UPDATE orderd SET order_status = UPPER(order_status);
+UPDATE customer SET gender = UPPER(gender);
+UPDATE product SET category = UPPER(category);
+<br>
+
+
+select * from customer;
+select * from product;
+select * from orderd;
+select * from order_items;
+<br>
+
+
+
+
+select c.customer_id,c.customer_name,c.
+age,o.payment_method,o.order_date,o.order_id
+from customer as c
+inner join orderd as o on  c.customer_id= o.customer_id;
+<br>
+
+select * from customer as c
+left join orderd as od on c.customer_id=od.customer_id
+union
+select * from customer as c
+right join orderd as od on c.customer_id=od.customer_id;
+
+<br>
+
+
+SELECT
+o.order_id,
+c.customer_name,
+p.product_name,
+oi.quantity,
+o.order_date
+FROM order_items oi
+JOIN orderd o ON oi.order_id = o.order_id
+JOIN customer c ON o.customer_id = c.customer_id
+JOIN product p ON oi.product_id = p.product_id;
+<br>
+
+select distinct gender from customer;
+select distinct payment_method from orderd;
+select distinct order_status from orderd;
+
+select * from Customer;
+select * from orderd;
+select * from order_items;
+select * from product;
+
+<br>
+
+
+/*q1*/
+select count(customer_id) as total_customers from customer;
+/*q2*/
+select count(*) as total_orders from orderd;
+
+<br>
+select distinct(order_id) from order_items;
+select order_id from order_items;
+
+/*q3*/
+
+select c.customer_name,count(o.order_id) as total_order from customer c
+join orderd o on c.customer_id=o.customer_id
+group by c.customer_name
+order by total_order desc;
+
+<br>
+select c.age,count(order_id) as tor from customer c
+join orderd o on c.customer_id=o.customer_id
+group by c.age
+order by tor desc;
+<br>
+select * from product;
+select * from order_items;
+<br>
+/*q4*/
+select p.product_name, sum(oi.quantity) as tq
+from product p join order_items oi on 
+p.product_id=oi.product_id	
+group by p.product_name,p.category
+order by tq desc;
+<br>
+/*q5*/
+select p.product_name,sum(oi.quantity*p.price) as tr
+from product p join order_items oi
+on p.product_id=oi.product_id
+group by p.product_name
+order by tr desc;
+<br>
+/*q6*/
+select p.category,sum(oi.quantity*p.price) as tpcr
+from product p join order_items oi on
+p.product_id=oi.product_id
+group by p.category
+order by tpcr;
+<br>
+/*q7*/
+select o.payment_method,count(o.payment_method)  as tpm from orderd o
+group by o.payment_method
+order by tpm; 
+
+
+
+select * from orderd;
+select * from order_items;
+<br>
+/*q8*/
+select o.order_status,count(o.order_id) as ost
+from orderd o
+group by o.order_status
+order by ost desc; <br>
+
+/*q9*/
+SELECT
+MONTH(o.order_date) AS month,
+SUM(oi.quantity * p.price) AS monthly_revenue
+FROM orderd o
+JOIN order_items oi ON o.order_id = oi.order_id
+JOIN product p ON oi.product_id = p.product_id
+GROUP BY MONTH(o.order_date)
+ORDER BY month;
+<br>
+</p>
+<br>
+
+
+
+
+<h1 id="hh">CONNECTING MYSQL SERVER ADN R STUDIO</h1><br>
+
+<p id="pp5">library(DBI)
+library(RMySQL)
+
+con <- dbConnect(
+  RMySQL::MySQL(),
+  dbname = "sales_analysis",
+  host = "127.0.0.1",
+  port = 3306,
+  user = "root",
+  password = "bS6302581779."
+)
+print(con)
+
+</p>
+<br>
+<br>
+
+
+
+
+<h1 id="hh">R CODES oF ANALYSIS</h1><br>
+
+<p id="pp5">
+customer<-dbReadTable(con,"customer")
+product<-dbReadTable(con,"product")
+orders<-dbReadTable(con,"orderd")
+order_items<-dbReadTable(con,"order_items") <br>
+
+head(customer)
+head(product)
+head(orders)
+head(order_items) <br>
+
+salesdf <- dbGetQuery(con, "
+  SELECT
+    o.order_id,
+    o.order_date,
+    o.payment_method,
+    o.order_status,
+    c.customer_name,
+    c.gender,
+    c.cities,
+    p.product_name,
+    p.category,
+    p.price,
+    oi.quantity,
+    (oi.quantity * p.price) AS revenue
+  FROM order_items oi
+  JOIN orderd o ON oi.order_id = o.order_id
+  JOIN customer c ON o.customer_id = c.customer_id
+  JOIN product p ON oi.product_id = p.product_id
+")  <br>
+print(salesdf)
+
+
+# q1 total revenue
+print(sum(salesdf$revenue))
+
+<br>
+#q2 total orders
+print(length(salesdf$order_id))
+<br>
+#q3 unique customers purchased
+print(length(unique(salesdf$customer_name)))  <br>
+
+#q4 average order value
+tr<-sum(salesdf$revenue)
+to<-length(salesdf$order_id)
+avg<-tr/to
+print(tr)
+print(to)
+print(avg) <br>
+
+#section 2
+#q5  how many orders did each person place
+library(dplyr)
+oec<-salesdf%>%
+  group_by(customer_name)%>%<br>
+  summarise(to=n_distinct(order_id))
+
+print(oec)
+
+
+#q6  top 5 customers of total revenue
+library(dplyr)
+tr<-salesdf%>%
+  group_by(customer_name)%>%  <br>
+  summarise(tor=sum(revenue))%>%
+  arrange(desc(tor))%>%
+  slice_head(n=5)
+print(tr)
+
+#q7 revennue by gender
+rbyg<-salesdf%>%
+  group_by(gender)%>%
+  summarise(tr=sum(revenue))%>%
+  arrange(tr)
+print(rbyg)
+<br>
+
+#q8 revenue by city
+rbyc<-salesdf%>%
+  group_by(cities)%>%
+  summarise(tor=sum(revenue))%>%
+  arrange(desc(tor))
+print(rbyc)
+<br>
+
+#section 3
+#q9  product highest quantity
+pq<-salesdf%>%
+  group_by(product_name)%>%
+  summarise(tq=sum(quantity))%>%
+  arrange(desc(tq))%>%
+  slice_head(n=1)
+print(pq)
+
+<br>
+#q10  product generated highest revenue
+phr<-salesdf%>%
+  group_by(product_name)%>%
+  summarise(tr=sum(revenue))%>%
+  arrange(desc(tr))%>%
+  slice_head(n=1)
+print(phr)
+
+<br>
+#q11 revenue by category
+library(dplyr)
+rbycat<-salesdf%>%
+  group_by(category)%>%
+  summarise(tr=sum(revenue))%>%
+  arrange(tr)%>%
+  slice_head(n=15)
+print(rbycat)
+<br>
+#q12 average product price per category
+appc<-salesdf%>%
+  group_by(category)%>%
+  summarise(ag=mean(price))%>%
+  arrange(desc(ag))
+print(appc)
+<br>
+#section 4
+#q13  which payment method is used most
+payment_usage <- table(salesdf$payment_method)
+payment_usage
+<br>
+#q14 delivered and failed orders
+od<-table(salesdf$order_status)
+print(od)
+
+
+#q15 failed by paymethod
+fod<-subset(salesdf,order_status=="failed")
+pam<-table(fod$payment_method)
+print(pam)
+<br>
+#section 5
+#q16 month wise revenue
+library(dplyr)
+salesdf$order_date <- as.Date(salesdf$order_date)
+salesdf$month <- format(salesdf$order_date, "%Y-%m")
+rbym<-salesdf%>%
+  group_by(month)%>% 
+  summarise(tr=sum(revenue))%>%
+  arrange(desc(tr))
+print(rbym)
+<br>
+#q17 month with highest revenue
+salesdf$month<-format(salesdf$order_date,"%m")
+rhm<-salesdf%>%
+  group_by(month)%>%
+  summarise(tr=sum(revenue))%>%
+  arrange(desc(tr))
+print(rhm)
+<br>
+
+#q18 plot
+library(ggplot2)
+rbym$month <- as.factor(rbym$month)
+a<-plot(
+  rbym$month,
+  rbym$tr,
+  type="o",
+  xlab="month",
+  ylab="revenue",
+  main="monthly revenue trend",
+  color="blue","green"
+)
+print(a)
+
+<br>
+#q19   
+library(dplyr)
+bpc<-salesdf%>%
+  group_by(month,category)%>%
+  summarise(tr=sum(revenue))%>%
+  arrange(desc(tr))
+print(bpc)
+
+<br>
+#visualizatio monthly revenue
+mr<-barplot(
+  rbym$tr,
+  main="monthly revenue trend",
+  names.arg=rbym$month,
+  xlab="month",
+  ylab="total revenue",
+  col="purple",
+  las=3
+)
+print(mr)  
+
+
+<br>
+dir.create("plots", showWarnings = FALSE)
+
+png(
+  filename = "plots/monthly_revenue_bar.png",
+  width = 900,
+  height = 500
+)
+<br>
+barplot(
+  rbym$tr,
+  main = "Monthly Revenue Trend",
+  names.arg = rbym$month,
+  xlab = "Month",
+  ylab = "Total Revenue",
+  col = "purple",
+  las = 3
+)
+
+dev.off()
+
+<br>
+#monthly reveenue line plot
+png(
+  filename="plots/monthly_revenue_line.png",
+  width=900,
+  height=500
+)
+plot(
+  rbym$month,
+  rbym$tr,
+  main="monthly revenue",
+  xlab="month",
+  ylab="revenue",
+  type="o",
+  col="red",
+  pch=16
+)
+dev.off()
+
+<br>
+
+#pie chart of reveenue by category rbycat
+png(
+  filename="plots/revenue_category_pie.png",
+  width=900,
+  height=500
+) <br>
+labels <- paste(
+  rbycat$category,
+  "-",
+  round(rbycat$tr / sum(rbycat$tr) * 100, 1),
+  "%"
+)
+
+pie(
+  rbycat$tr,
+  labels=labels,
+  col=rainbow(length(rbycat$tr)),
+  main="revenue by category"
+)
+dev.off() <br>
+
+#orders by payment method bar plot
+png(
+  filename="plots/order_paymentmethod_barplot.png",
+  width=900,
+  height=500
+)
+barplot(
+  payment_usage,
+  col="skyblue",
+  xlab="payment_method",
+  ylab="number of orders",
+  main="number of orders by payment_method",
+  las=2
+)
+dev.off()
+
+<br>
+#top 5 customer by revenue
+png(
+  filename="plots/top_5_customer_revenue_pie.png",
+  width=900,
+  height=500
+    )
+labels<-paste(
+  tr$customer_name,"-",tr$tor
+)
+pie(
+  tr$tor,
+  labels=labels,
+  col=rainbow(length(tr$tor)),
+  main="top 5 customer revenue"
+)
+dev.off()
+
+
+getwd() <br>
+</p>
+<br>
+    </body>
+</html>

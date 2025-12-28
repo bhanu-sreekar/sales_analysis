@@ -1,0 +1,138 @@
+#n1{
+    text-align:center;
+    color:blue;
+}
+#b1{
+    display:block;
+    text-align:center;
+    color:white;
+    background-color:rgb(22, 103, 169);
+    font-size:2em;
+    padding:10px;
+   
+}
+#b1:hover{
+    background-color:green;
+}
+.cb{
+    display:block;
+    margin:50px auto;
+}
+
+#h2{
+    text-align:center;
+    color:black;
+}
+
+#hh1{
+    text-align:center;
+    color:blue;
+}
+
+#p1{
+    color:white;
+    text-align:center;
+    padding:10px;
+    background-color:rgb(22, 103, 169);
+    font-size:2em;
+
+}
+#p1:hover{
+    background-color:green;
+}
+.bp{
+     display:block;
+    margin:50px auto;
+}
+
+#i1{
+    color:white;
+    text-align:center;
+    padding:10px;
+    background-color:rgb(22, 103, 169);
+    font-size:2em;
+
+}
+#i1:hover{
+    background-color:green;
+}
+.bi{
+     display:block;
+    margin:50px auto;
+}
+#c1{
+    color:white;
+    text-align:center;
+    padding:10px;
+    background-color:rgb(22, 103, 169);
+    font-size:2em;
+
+}
+#c1:hover{
+    background-color:green;
+}
+.bc{
+     display:block;
+    margin:50px auto;
+}
+#hi1{
+    text-align:center;
+    color:blue;
+}
+#p{
+    color:purple;
+    font-size:3em;
+    text-align:center;
+}
+#pp1{
+    color:black;
+    font-size:3em;
+    text-align:center;
+}
+#pp2{
+    color:rgb(22, 103, 169);
+    font-size:3em;
+    text-align:center;
+}
+#pp3{
+    color:green;
+    font-size:3em;
+    text-align:center;
+}
+#pp4{
+    color:rgb(217, 120, 22);
+    font-size:3em;
+    text-align:center;
+}
+
+#hh{
+    color:white;
+    background-color:red;
+    text-align:center;
+    padding:10px;
+
+
+}
+
+
+#pp5{
+    color:black;
+    font-size:3em;
+    text-align:center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
